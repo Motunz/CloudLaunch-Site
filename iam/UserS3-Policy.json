@@ -1,0 +1,68 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "SeeBucketNames",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListAllMyBuckets"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "ListSiteAndPrivateBucketsOnly",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket"
+			],
+			"Resource": [
+				"arn:aws:s3:::cloudlaunch-site",
+				"arn:aws:s3:::cloudlaunch-private",
+				"arn:aws:s3:::cloudlaunch-visible-only"
+			]
+		},
+		{
+			"Sid": "ReadSiteObjectsOnly",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject"
+			],
+			"Resource": "arn:aws:s3:::cloudlaunch-site/*"
+		},
+		{
+			"Sid": "ReadWritePrivateObjectsOnly",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject"
+			],
+			"Resource": "arn:aws:s3:::cloudlaunch-private/*"
+		},
+		{
+			"Sid": "NoDeletesAnywhere",
+			"Effect": "Deny",
+			"Action": [
+				"s3:DeleteObject",
+				"s3:DeleteObjectVersion"
+			],
+			"Resource": [
+				"arn:aws:s3:::cloudlaunch-site/*",
+				"arn:aws:s3:::cloudlaunch-private/*",
+				"arn:aws:s3:::cloudlaunch-visible-only/*"
+			]
+		},
+		{
+			"Sid": "BlockVisibleOnlyContentAccess",
+			"Effect": "Deny",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:ListBucket"
+			],
+			"Resource": [
+				"arn:aws:s3:::cloudlaunch-visible-only",
+				"arn:aws:s3:::cloudlaunch-visible-only/*"
+			]
+		}
+	]
+}
