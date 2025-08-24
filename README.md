@@ -1,4 +1,4 @@
-# CloudLaunch — AltSchool Engineering (Third Semester Assignment 1)
+# CloudLaunch — AltSchool of Engineering 
 
 ## Project Overview
 This project demonstrates how to deploy a static website on AWS S3 with proper IAM policies and design a secure VPC network environment.
