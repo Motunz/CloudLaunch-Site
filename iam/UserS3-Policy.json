@@ -2,10 +2,11 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "SeeBucketNames",
+			"Sid": "AllowListBuckets",
 			"Effect": "Allow",
 			"Action": [
-				"s3:ListAllMyBuckets"
+				"s3:ListAllMyBuckets",
+				"s3:GetBucketLocation"
 			],
 			"Resource": "*"
 		},
